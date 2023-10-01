@@ -1,0 +1,6 @@
+方法一: sim(Query, ID1) =0 sim(Query, ID2) =4 sim(Query, ID3) =10
+最相关的是第3篇
+方法二: sim(Query, ID1) =0.0 sim(Query, ID2) =0.07272727272727272 sim(Query, ID3) =0.04716981132075472
+最相关的是第2篇
+方法三: sim(Query, ID1) =0.0 sim(Query, ID2) =0.10839379101860822 sim(Query, ID3) =0.06073972039866891
+最相关的是第2篇
