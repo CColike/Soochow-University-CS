@@ -1,0 +1,8 @@
+emuart.c:30:6:emuart_init	8	static
+emuart.c:388:10:crc16	8	static
+emuart.c:361:6:sendFrame	24	static
+emuart.c:44:6:emuart_send1	16	static
+emuart.c:56:6:emuart_sendN	8	static
+emuart.c:68:6:emuart_send_string	8	static
+emuart.c:88:10:emuart_frame	24	static
+emuart.c:223:10:useremuart_frame	40	static

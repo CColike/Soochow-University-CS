@@ -1,0 +1,3 @@
+wdog.c:14:6:wdog_start	0	static
+wdog.c:29:6:wdog_feed	0	static
+wdog.c:34:6:wdog_stop	0	static

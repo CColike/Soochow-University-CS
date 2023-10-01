@@ -1,0 +1,145 @@
+#create:2018-10-12
+#auther:zsl,wb
+
+#方便阅读本文件的知识
+#(1)字符'\'表示换行
+#(2)所有目标的第一条指令前必须有一个tab，不可用4个空格代替
+#(3)$@  表示目标文件
+#   $^  表示所有的依赖文件
+#   $<  表示第一个依赖文件
+#   $?  表示比目标还要新的依赖文件列表
+
+#定义本文件中使用到的变量【根据实际需要修改】
+#控制台输出程序路径
+printf    := echo
+
+#.C文件文件夹
+SRC_C := ./srcc
+#.S文件文件夹
+SRC_S := ./srcs
+#.o文件存放目录
+D_OBJ := ./obj
+#.d文件存放目录
+D_MK  := ./dmk
+#.C文件列表
+SRC_CList := $(wildcard ./srcc/*.c)
+#.CPP文件列表
+#【20200305 1/8】 姜家乐&王浩波 新增.cpp的文件列表，仿照.c文件列表添加
+SRC_CPPList := $(wildcard ./srcc/*.cpp)
+#.s文件列表
+#【20200305 2/8】 姜家乐&王浩波 新增.S文件列表，并将原来.s和.S进行区分
+SRC_sList := $(wildcard ./srcs/*.s)
+#.S文件列表
+SRC_SList := $(wildcard ./srcs/*.S)
+
+#链接文件(.ld)的存储路径
+linkFile := "C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\03_MCU\Linker_file\STM32L431RCTX_FLASH.ld"
+#定义生成的文件名
+finalGoal := CH11.2.3-Event_mbedOS_STM32L431-20200502
+#定义头文件所在的路径
+include := -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\.settings" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\01_Doc" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\02_CPU" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\03_MCU" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\04_GEC" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\05_UserBoard" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\06_SoftComponent" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\07_NosPrg" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\08_mbedOS" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\09_mbedOsPrg" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\Debug" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\02_CPU\chip" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\02_CPU\cmsis" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\03_MCU\Linker_file" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\03_MCU\MCU_drivers" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\03_MCU\startup" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\08_mbedOS\manager" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\08_mbedOS\protect" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\08_mbedOS\TARGET_CORTEX" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\08_mbedOS\TARGET_CORTEX\rtx4" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\08_mbedOS\TARGET_CORTEX\rtx5" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\08_mbedOS\TARGET_CORTEX\rtx5\Include" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\08_mbedOS\TARGET_CORTEX\rtx5\RTX" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\08_mbedOS\TARGET_CORTEX\rtx5\Source" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\08_mbedOS\TARGET_CORTEX\rtx5\RTX\Config" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\08_mbedOS\TARGET_CORTEX\rtx5\RTX\Include" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\08_mbedOS\TARGET_CORTEX\rtx5\RTX\Source" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\Debug\obj" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\Debug\srcc" -I"C:\Users\EMBEDDED_JJL\Desktop\mbedOS\mbedos-200523\CH11.2.3-Event_mbedOS_STM32L431-20200502\Debug\srcs"
+#定义优化级别。共有O0、O1、O2、Os和Og，默认使用Og
+opt := O0
+#.o文件列表
+#【20200305 3/8】 姜家乐&王浩波 将原来的OBJ_C改为OBJ-CS，新增.S的.o生成文件
+
+#把.c文件替换为.o文件
+OBJ_CS := $(addprefix $(D_OBJ)/,$(patsubst %.c,%.o,$(notdir $(SRC_CList))))
+#把.cpp文件替换为.o文件
+OBJ_CS += $(addprefix $(D_OBJ)/,$(patsubst %.cpp,%.o,$(notdir $(SRC_CPPList))))
+#把.s文件替换为.o文件  
+OBJ_CS += $(addprefix $(D_OBJ)/,$(patsubst %.s,%.o,$(notdir $(SRC_sList))))
+#把.S文件替换为.o文件  
+OBJ_CS += $(addprefix $(D_OBJ)/,$(patsubst %.S,%.o,$(notdir $(SRC_SList))))
+
+#.d文件列表
+#【20200305 4/8】 姜家乐&王浩波 新增.S的.d生成文件
+
+#把.c文件替换为.d文件
+SRC_MK := $(addprefix $(D_OBJ)/, $(patsubst %.c,%.d,$(notdir $(SRC_CList))))
+#把.cpp文件替换为.d文件
+SRC_MK += $(addprefix $(D_OBJ)/, $(patsubst %.cpp,%.d,$(notdir $(SRC_CPPList))))
+#把.s文件替换为.d文件
+SRC_MK += $(addprefix $(D_OBJ)/, $(patsubst %.s,%.d,$(notdir $(SRC_sList))))
+#把.S文件替换为.d文件  
+SRC_MK += $(addprefix $(D_OBJ)/, $(patsubst %.S,%.d,$(notdir $(SRC_SList))))
+
+
+#将文件夹./Source中的.c文件编译为.o文件
+#【20200305 5/8】 姜家乐&王浩波 将优先级-O0改成-$(opt),以下所有均修改
+$(D_OBJ)/%.o:$(SRC_C)/%.c
+	arm-none-eabi-gcc "$^" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DDEBUG \
+-DSTM32L431xx -c $(include) -$(opt) -ffunction-sections -fdata-sections -Wall -fstack-usage \
+-MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" 
+
+#将文件夹./Source中的.cpp文件编译为.o文件
+#【20200305 6/8】 姜家乐&王浩波 新增.cpp的编译成.o文件的规则格式
+$(D_OBJ)/%.o:$(SRC_C)/%.cpp
+	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -c $(include) -$(opt) \
+-ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics \
+-fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)"  -MT"$@" \
+--specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+
+#将文件夹./Source中的.s文件编译为.o文件 
+$(D_OBJ)/%.o:$(SRC_S)/%.s
+	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -c $(include) -x assembler-with-cpp \
+--specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
+
+#将文件夹./Source中的.S文件编译为.o文件 
+#【20200305 7/8】 姜家乐&王浩波 新增.S的编译成.o文件的规则格式
+$(D_OBJ)/%.o:$(SRC_S)/%.S
+	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -c $(include) -x assembler-with-cpp \
+--specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
+
+
+
+
+# 罗列文件中的目标。目标为希望生成的文件。其中“all”和“clean”为伪目标
+all:default.size.stdout $(finalGoal).lst $(finalGoal).hex 
+
+#【20200305 8/8】 姜家乐&王浩波 将原来的gcc改为g++,并将OBJ_C改为OBJ_CS
+
+$(finalGoal).elf: $(OBJ_CS)
+	arm-none-eabi-g++ -o "$(finalGoal).elf" $(OBJ_CS) -mcpu=cortex-m4 -T $(linkFile) \
+--specs=nosys.specs -Wl,-Map="$(finalGoal).map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 \
+-mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	@$(printf) 'Finished building target: $@'
+	@$(printf) ' '
+
+$(finalGoal).hex: $(finalGoal).elf $(finalGoal).lst
+	arm-none-eabi-objcopy -O ihex "$<"  "$@"
+	@$(printf) 'Finished building: $@'
+	@$(printf) ' '
+
+# 【20200604 5/5】 查看芯片内存使用情况
+default.size.stdout: $(finalGoal).elf
+	arm-none-eabi-size  $(finalGoal).elf
+	@echo 'Finished building: $@'
+	@echo ' '
+	
+$(finalGoal).lst: $(finalGoal).elf
+	arm-none-eabi-objdump -h -S "$(finalGoal).elf" > "$(finalGoal).lst"
+	@$(printf) 'Finished building: $@'
+	@$(printf) ' '
+
+#设置清理工作空间的伪目标
+#仅删除目标文件，其它文件若未发生变动则不编译，有利于提高编译速度
+fastClean:
+	rm -rf "$(finalGoal).elf" "$(finalGoal).hex" "$(finalGoal).map"
+	-@$(printf) 'make: fast clean has be done'
+	-@$(printf) ' '
+#删除所有中间文件和目标文件，全部重新编译	
+clean:
+	rm -rf  "$(finalGoal).elf" "$(finalGoal).hex" "$(finalGoal).map" "$(finalGoal).lst" "$(finalGoal).hex" $(OBJ_C) $(SRC_MK)
+	-@$(printf) 'make: clean has be done'
+	-@$(printf) ' '
+test:
+	arm-none-eabi-size  $(finalGoal).elf
+	@$(printf) 'Finished building: $@'
+	@$(printf) ' '
+	-@$(printf)  $(OBJ_C)
+	
+#指定哪些目标为伪目标
+.PHONY: all clean fastClean test
+
+

@@ -1,0 +1,7 @@
+spi.c:24:6:spi_init	8	static
+spi.c:124:9:spi_send1	16	static
+spi.c:166:9:spi_sendN	24	static
+spi.c:191:9:spi_receive1	4	static
+spi.c:219:9:spi_receiveN	24	static
+spi.c:243:6:spi_enable_re_int	0	static
+spi.c:256:6:spi_disable_re_int	0	static
