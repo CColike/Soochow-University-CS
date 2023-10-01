@@ -1,0 +1,177 @@
+sql 这几回的试卷 徐家杰期末两份试卷 期中试卷 往年试卷
+
+创建表：
+create table tab1
+(
+Sno varchar(10) unique not null,
+grade int check(grade>10),
+primary key(sid,bid),
+foreign key(kname) peferences koss(kname)
+)
+
+
+
+普通查询
+group by A  把A列值相同的放到一起归为一组
+having  对于上面的每一组分别计算进行筛选
+
+连接查询（表示链接，不是笛卡尔积。单纯地把名字一样的并起来）
+嵌套查询：
+in：
+select Sno,Sname,Sdept
+from Student
+where Sdept in
+(
+  select Sdept
+  from Student
+  where Sname="刘晨"
+)
+
+exists：
+查询选修了1号学生所有课程（SC表）的学生的学号（SC表）
+select distinct Sno
+from sc scx
+where not exists
+(
+	select *
+	from sc scy
+	where scy.Sno='1' and not exists
+	(
+		select *
+		from sc scz
+		where scz.Sno=scx.Sno and scz.Cno=scy.Cno
+	)
+)
+
+
+查询选修了全部课程（Course表）的学生姓名（Student表）
+select name
+from Student
+where not exists
+(
+	select *
+	from Course
+	where not exists
+	(
+		select *
+		from sc
+		where sc.Sno=Studnet.Sno and sc.Cno=Course.Cno
+	)
+)
+
+聚合查询：
+UNION并操作（俩表上下叠加）
+INSERSECT交操作（找相同的行）
+EXCEPT差操作（上-下   上-（上交下））
+
+
+INSERT：
+insert 
+into tab1(c1,c2,c4)
+values(1,2,'4')
+
+insert 
+into tab1
+values(1,2,3,'4')
+
+insert
+into tab1(c1,c3)
+select c1,c3
+from tab2
+
+UPDATE:
+update 表名
+set 列明=表达式1
+where 条件
+
+DELETE
+delete 
+from 表名
+where 条件
+
+
+
+
+
+
+问答题 往年试卷
+两个老师的ppt
+范式
+徐家杰的第一回试卷  -》提纲
+期末大派送提纲
+
+
+
+
+
+
+
+
+
+
+select B#
+from B
+except
+select AB.B# B#
+from A,AB
+where A.A#=AB.A# and ANAME=''
+
+
+select ANAME,CITY 
+from  A
+where A# in 
+(
+select A#
+from B,AB
+where B.B#=AB.B# and BNAME="书包"
+)
+
+
+
+select sum(QTY)
+from B,AB
+where B.B#=AB.B# and BNAME="毛笔"
+
+select BNAME,sum(QTY)
+from A,B,AB
+where B.B#=AB.B# and A.A#=AB.A# and CITY="长沙"
+group by B.B#
+
+
+select ANAME
+from A
+where not exists
+(
+select *
+from B
+where not exists
+(
+select *
+from AB
+where AB.A#=A.A# and AB.B#=B.B#
+)
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

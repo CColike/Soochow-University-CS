@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="cs133-lab1/src/java"/>
+	<classpathentry kind="src" path="cs133-lab1/test"/>
+	<classpathentry kind="lib" path="cs133-lab1/lib/ant-contrib-1.0b3.jar"/>
+	<classpathentry kind="lib" path="cs133-lab1/lib/junit-4.5.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
