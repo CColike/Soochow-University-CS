@@ -1,0 +1,20 @@
+1011 Tom      21 M 0
+10180 Alice   24 F 1
+2023 Ben      18 M 0 1
+102 Robert    32 M 1 2
+4035 Vincent  46 M 2 3
+11066 Edward  24 M 0 1 2 3
+6068 Bob      19 M 1 2 3
+10720 Emma    25 F 0 3
+76 Cathy      28 F 1
+108 Mary      20 F 2
+208 Katherine 20 F 2
+10900 Robin   21 M 3
+10 Tiffany    26 F 1 2 3
+2100 Tommy    42 M 0 2
+4120 Jane     31 F 1
+88160 Lydia   23 F 0
+1244 Ken      19 M 3
+12067 Betty   35 F 2 3
+61390 Peter   38 M 1 2 3
+4140 Nancy    26 F 0 3
