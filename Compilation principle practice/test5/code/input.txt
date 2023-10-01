@@ -1,0 +1,19 @@
+S -> NP VP 0.9
+S -> VP 0.1
+VP -> V NP 0.5
+VP -> V 0.1
+VP -> V @VP_V 0.3
+VP -> V PP 0.1
+@VP_V -> NP PP 1.0
+NP -> NP NP 0.1
+NP -> NP PP 0.2
+NP -> N 0.7
+PP -> P NP 1.0
+N -> people 0.5
+N -> fish 0.2
+N -> tanks 0.2
+N -> rods 0.1
+V -> people 0.1
+V -> fish 0.6
+V -> tanks 0.3
+P -> with 1.0

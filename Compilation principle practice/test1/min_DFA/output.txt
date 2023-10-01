@@ -1,0 +1,10 @@
+0 b 0
+0 a 1
+1 b 2
+1 a 1
+2 b 3
+2 a 1
+3 b 0
+3 a 1
+start state: 0 
+accepting state: 3 

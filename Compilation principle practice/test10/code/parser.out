@@ -1,0 +1,2172 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statements
+Rule 2     statements -> statements statement
+Rule 3     statements -> statement
+Rule 4     statement -> assignment
+Rule 5     statement -> operation
+Rule 6     statement -> print
+Rule 7     statement -> function
+Rule 8     statement -> run_function
+Rule 9     statement -> class
+Rule 10    operation -> VARIABLE = expression
+Rule 11    operation -> self = expression
+Rule 12    operation -> VARIABLE + = expression
+Rule 13    operation -> VARIABLE - = expression
+Rule 14    operation -> VARIABLE [ expression ] = expression
+Rule 15    assignment -> VARIABLE = NUMBER
+Rule 16    assignment -> self = VARIABLE
+Rule 17    assignment -> VARIABLE = VARIABLE
+Rule 18    assignment -> VARIABLE [ expression ] = NUMBER
+Rule 19    assignment -> VARIABLE = VARIABLE [ expression ]
+Rule 20    assignment -> VARIABLE = VARIABLE ( expressions )
+Rule 21    expressions -> <empty>
+Rule 22    expressions -> expression
+Rule 23    expressions -> expressions , expression
+Rule 24    expression -> term
+Rule 25    expression -> expression + term
+Rule 26    expression -> expression - term
+Rule 27    term -> factor
+Rule 28    term -> term * factor
+Rule 29    term -> term / factor
+Rule 30    factor -> STR
+Rule 31    factor -> self
+Rule 32    factor -> NUMBER
+Rule 33    factor -> VARIABLE
+Rule 34    factor -> ( expression )
+Rule 35    factor -> VARIABLE [ expression ]
+Rule 36    print -> PRINT ( variables )
+Rule 37    function -> DEF VARIABLE ( variables ) { statements }
+Rule 38    function -> DEF VARIABLE ( SELF ) { statements }
+Rule 39    function -> DEF VARIABLE ( SELF , variables ) { statements }
+Rule 40    run_function -> VARIABLE ( expressions )
+Rule 41    run_function -> VARIABLE . VARIABLE ( expressions )
+Rule 42    variables -> <empty>
+Rule 43    variables -> VARIABLE
+Rule 44    variables -> self
+Rule 45    variables -> variables , VARIABLE
+Rule 46    variables -> variables , self
+Rule 47    class -> CLASS VARIABLE { statements }
+Rule 48    self -> SELF . VARIABLE
+
+Terminals, with rules where they appear
+
+(                    : 20 34 36 37 38 39 40 41
+)                    : 20 34 36 37 38 39 40 41
+*                    : 28
++                    : 12 25
+,                    : 23 39 45 46
+-                    : 13 26
+.                    : 41 48
+/                    : 29
+=                    : 10 11 12 13 14 15 16 17 18 19 20
+CLASS                : 47
+DEF                  : 37 38 39
+NUMBER               : 15 18 32
+PRINT                : 36
+SELF                 : 38 39 48
+STR                  : 30
+VARIABLE             : 10 12 13 14 15 16 17 17 18 19 19 20 20 33 35 37 38 39 40 41 41 43 45 47 48
+[                    : 14 18 19 35
+]                    : 14 18 19 35
+error                : 
+{                    : 37 38 39 47
+}                    : 37 38 39 47
+
+Nonterminals, with rules where they appear
+
+assignment           : 4
+class                : 9
+expression           : 10 11 12 13 14 14 18 19 22 23 25 26 34 35
+expressions          : 20 23 40 41
+factor               : 27 28 29
+function             : 7
+operation            : 5
+print                : 6
+program              : 0
+run_function         : 8
+self                 : 11 16 31 44 46
+statement            : 2 3
+statements           : 1 2 37 38 39 47
+term                 : 24 25 26 28 29
+variables            : 36 37 39 45 46
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statements
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . function
+    (8) statement -> . run_function
+    (9) statement -> . class
+    (15) assignment -> . VARIABLE = NUMBER
+    (16) assignment -> . self = VARIABLE
+    (17) assignment -> . VARIABLE = VARIABLE
+    (18) assignment -> . VARIABLE [ expression ] = NUMBER
+    (19) assignment -> . VARIABLE = VARIABLE [ expression ]
+    (20) assignment -> . VARIABLE = VARIABLE ( expressions )
+    (10) operation -> . VARIABLE = expression
+    (11) operation -> . self = expression
+    (12) operation -> . VARIABLE + = expression
+    (13) operation -> . VARIABLE - = expression
+    (14) operation -> . VARIABLE [ expression ] = expression
+    (36) print -> . PRINT ( variables )
+    (37) function -> . DEF VARIABLE ( variables ) { statements }
+    (38) function -> . DEF VARIABLE ( SELF ) { statements }
+    (39) function -> . DEF VARIABLE ( SELF , variables ) { statements }
+    (40) run_function -> . VARIABLE ( expressions )
+    (41) run_function -> . VARIABLE . VARIABLE ( expressions )
+    (47) class -> . CLASS VARIABLE { statements }
+    (48) self -> . SELF . VARIABLE
+
+    VARIABLE        shift and go to state 10
+    PRINT           shift and go to state 12
+    DEF             shift and go to state 13
+    CLASS           shift and go to state 15
+    SELF            shift and go to state 14
+
+    program                        shift and go to state 1
+    statements                     shift and go to state 2
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    function                       shift and go to state 7
+    run_function                   shift and go to state 8
+    class                          shift and go to state 9
+    self                           shift and go to state 11
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statements .
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . function
+    (8) statement -> . run_function
+    (9) statement -> . class
+    (15) assignment -> . VARIABLE = NUMBER
+    (16) assignment -> . self = VARIABLE
+    (17) assignment -> . VARIABLE = VARIABLE
+    (18) assignment -> . VARIABLE [ expression ] = NUMBER
+    (19) assignment -> . VARIABLE = VARIABLE [ expression ]
+    (20) assignment -> . VARIABLE = VARIABLE ( expressions )
+    (10) operation -> . VARIABLE = expression
+    (11) operation -> . self = expression
+    (12) operation -> . VARIABLE + = expression
+    (13) operation -> . VARIABLE - = expression
+    (14) operation -> . VARIABLE [ expression ] = expression
+    (36) print -> . PRINT ( variables )
+    (37) function -> . DEF VARIABLE ( variables ) { statements }
+    (38) function -> . DEF VARIABLE ( SELF ) { statements }
+    (39) function -> . DEF VARIABLE ( SELF , variables ) { statements }
+    (40) run_function -> . VARIABLE ( expressions )
+    (41) run_function -> . VARIABLE . VARIABLE ( expressions )
+    (47) class -> . CLASS VARIABLE { statements }
+    (48) self -> . SELF . VARIABLE
+
+    $end            reduce using rule 1 (program -> statements .)
+    VARIABLE        shift and go to state 10
+    PRINT           shift and go to state 12
+    DEF             shift and go to state 13
+    CLASS           shift and go to state 15
+    SELF            shift and go to state 14
+
+    statement                      shift and go to state 16
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    function                       shift and go to state 7
+    run_function                   shift and go to state 8
+    class                          shift and go to state 9
+    self                           shift and go to state 11
+
+state 3
+
+    (3) statements -> statement .
+
+    VARIABLE        reduce using rule 3 (statements -> statement .)
+    PRINT           reduce using rule 3 (statements -> statement .)
+    DEF             reduce using rule 3 (statements -> statement .)
+    CLASS           reduce using rule 3 (statements -> statement .)
+    SELF            reduce using rule 3 (statements -> statement .)
+    $end            reduce using rule 3 (statements -> statement .)
+    }               reduce using rule 3 (statements -> statement .)
+
+
+state 4
+
+    (4) statement -> assignment .
+
+    VARIABLE        reduce using rule 4 (statement -> assignment .)
+    PRINT           reduce using rule 4 (statement -> assignment .)
+    DEF             reduce using rule 4 (statement -> assignment .)
+    CLASS           reduce using rule 4 (statement -> assignment .)
+    SELF            reduce using rule 4 (statement -> assignment .)
+    $end            reduce using rule 4 (statement -> assignment .)
+    }               reduce using rule 4 (statement -> assignment .)
+
+
+state 5
+
+    (5) statement -> operation .
+
+    VARIABLE        reduce using rule 5 (statement -> operation .)
+    PRINT           reduce using rule 5 (statement -> operation .)
+    DEF             reduce using rule 5 (statement -> operation .)
+    CLASS           reduce using rule 5 (statement -> operation .)
+    SELF            reduce using rule 5 (statement -> operation .)
+    $end            reduce using rule 5 (statement -> operation .)
+    }               reduce using rule 5 (statement -> operation .)
+
+
+state 6
+
+    (6) statement -> print .
+
+    VARIABLE        reduce using rule 6 (statement -> print .)
+    PRINT           reduce using rule 6 (statement -> print .)
+    DEF             reduce using rule 6 (statement -> print .)
+    CLASS           reduce using rule 6 (statement -> print .)
+    SELF            reduce using rule 6 (statement -> print .)
+    $end            reduce using rule 6 (statement -> print .)
+    }               reduce using rule 6 (statement -> print .)
+
+
+state 7
+
+    (7) statement -> function .
+
+    VARIABLE        reduce using rule 7 (statement -> function .)
+    PRINT           reduce using rule 7 (statement -> function .)
+    DEF             reduce using rule 7 (statement -> function .)
+    CLASS           reduce using rule 7 (statement -> function .)
+    SELF            reduce using rule 7 (statement -> function .)
+    $end            reduce using rule 7 (statement -> function .)
+    }               reduce using rule 7 (statement -> function .)
+
+
+state 8
+
+    (8) statement -> run_function .
+
+    VARIABLE        reduce using rule 8 (statement -> run_function .)
+    PRINT           reduce using rule 8 (statement -> run_function .)
+    DEF             reduce using rule 8 (statement -> run_function .)
+    CLASS           reduce using rule 8 (statement -> run_function .)
+    SELF            reduce using rule 8 (statement -> run_function .)
+    $end            reduce using rule 8 (statement -> run_function .)
+    }               reduce using rule 8 (statement -> run_function .)
+
+
+state 9
+
+    (9) statement -> class .
+
+    VARIABLE        reduce using rule 9 (statement -> class .)
+    PRINT           reduce using rule 9 (statement -> class .)
+    DEF             reduce using rule 9 (statement -> class .)
+    CLASS           reduce using rule 9 (statement -> class .)
+    SELF            reduce using rule 9 (statement -> class .)
+    $end            reduce using rule 9 (statement -> class .)
+    }               reduce using rule 9 (statement -> class .)
+
+
+state 10
+
+    (15) assignment -> VARIABLE . = NUMBER
+    (17) assignment -> VARIABLE . = VARIABLE
+    (18) assignment -> VARIABLE . [ expression ] = NUMBER
+    (19) assignment -> VARIABLE . = VARIABLE [ expression ]
+    (20) assignment -> VARIABLE . = VARIABLE ( expressions )
+    (10) operation -> VARIABLE . = expression
+    (12) operation -> VARIABLE . + = expression
+    (13) operation -> VARIABLE . - = expression
+    (14) operation -> VARIABLE . [ expression ] = expression
+    (40) run_function -> VARIABLE . ( expressions )
+    (41) run_function -> VARIABLE . . VARIABLE ( expressions )
+
+    =               shift and go to state 17
+    [               shift and go to state 18
+    +               shift and go to state 20
+    -               shift and go to state 21
+    (               shift and go to state 19
+    .               shift and go to state 22
+
+
+state 11
+
+    (16) assignment -> self . = VARIABLE
+    (11) operation -> self . = expression
+
+    =               shift and go to state 23
+
+
+state 12
+
+    (36) print -> PRINT . ( variables )
+
+    (               shift and go to state 24
+
+
+state 13
+
+    (37) function -> DEF . VARIABLE ( variables ) { statements }
+    (38) function -> DEF . VARIABLE ( SELF ) { statements }
+    (39) function -> DEF . VARIABLE ( SELF , variables ) { statements }
+
+    VARIABLE        shift and go to state 25
+
+
+state 14
+
+    (48) self -> SELF . . VARIABLE
+
+    .               shift and go to state 26
+
+
+state 15
+
+    (47) class -> CLASS . VARIABLE { statements }
+
+    VARIABLE        shift and go to state 27
+
+
+state 16
+
+    (2) statements -> statements statement .
+
+    VARIABLE        reduce using rule 2 (statements -> statements statement .)
+    PRINT           reduce using rule 2 (statements -> statements statement .)
+    DEF             reduce using rule 2 (statements -> statements statement .)
+    CLASS           reduce using rule 2 (statements -> statements statement .)
+    SELF            reduce using rule 2 (statements -> statements statement .)
+    $end            reduce using rule 2 (statements -> statements statement .)
+    }               reduce using rule 2 (statements -> statements statement .)
+
+
+state 17
+
+    (15) assignment -> VARIABLE = . NUMBER
+    (17) assignment -> VARIABLE = . VARIABLE
+    (19) assignment -> VARIABLE = . VARIABLE [ expression ]
+    (20) assignment -> VARIABLE = . VARIABLE ( expressions )
+    (10) operation -> VARIABLE = . expression
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    NUMBER          shift and go to state 29
+    VARIABLE        shift and go to state 28
+    STR             shift and go to state 34
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    expression                     shift and go to state 30
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 18
+
+    (18) assignment -> VARIABLE [ . expression ] = NUMBER
+    (14) operation -> VARIABLE [ . expression ] = expression
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    expression                     shift and go to state 37
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 19
+
+    (40) run_function -> VARIABLE ( . expressions )
+    (21) expressions -> .
+    (22) expressions -> . expression
+    (23) expressions -> . expressions , expression
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    )               reduce using rule 21 (expressions -> .)
+    ,               reduce using rule 21 (expressions -> .)
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    expressions                    shift and go to state 39
+    expression                     shift and go to state 40
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 20
+
+    (12) operation -> VARIABLE + . = expression
+
+    =               shift and go to state 41
+
+
+state 21
+
+    (13) operation -> VARIABLE - . = expression
+
+    =               shift and go to state 42
+
+
+state 22
+
+    (41) run_function -> VARIABLE . . VARIABLE ( expressions )
+
+    VARIABLE        shift and go to state 43
+
+
+state 23
+
+    (16) assignment -> self = . VARIABLE
+    (11) operation -> self = . expression
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    VARIABLE        shift and go to state 44
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    self                           shift and go to state 35
+    expression                     shift and go to state 45
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+
+state 24
+
+    (36) print -> PRINT ( . variables )
+    (42) variables -> .
+    (43) variables -> . VARIABLE
+    (44) variables -> . self
+    (45) variables -> . variables , VARIABLE
+    (46) variables -> . variables , self
+    (48) self -> . SELF . VARIABLE
+
+    )               reduce using rule 42 (variables -> .)
+    ,               reduce using rule 42 (variables -> .)
+    VARIABLE        shift and go to state 47
+    SELF            shift and go to state 14
+
+    variables                      shift and go to state 46
+    self                           shift and go to state 48
+
+state 25
+
+    (37) function -> DEF VARIABLE . ( variables ) { statements }
+    (38) function -> DEF VARIABLE . ( SELF ) { statements }
+    (39) function -> DEF VARIABLE . ( SELF , variables ) { statements }
+
+    (               shift and go to state 49
+
+
+state 26
+
+    (48) self -> SELF . . VARIABLE
+
+    VARIABLE        shift and go to state 50
+
+
+state 27
+
+    (47) class -> CLASS VARIABLE . { statements }
+
+    {               shift and go to state 51
+
+
+state 28
+
+    (17) assignment -> VARIABLE = VARIABLE .
+    (19) assignment -> VARIABLE = VARIABLE . [ expression ]
+    (20) assignment -> VARIABLE = VARIABLE . ( expressions )
+    (33) factor -> VARIABLE .
+    (35) factor -> VARIABLE . [ expression ]
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 17 (assignment -> VARIABLE = VARIABLE .)
+  ! reduce/reduce conflict for PRINT resolved using rule 17 (assignment -> VARIABLE = VARIABLE .)
+  ! reduce/reduce conflict for DEF resolved using rule 17 (assignment -> VARIABLE = VARIABLE .)
+  ! reduce/reduce conflict for CLASS resolved using rule 17 (assignment -> VARIABLE = VARIABLE .)
+  ! reduce/reduce conflict for SELF resolved using rule 17 (assignment -> VARIABLE = VARIABLE .)
+  ! reduce/reduce conflict for $end resolved using rule 17 (assignment -> VARIABLE = VARIABLE .)
+  ! reduce/reduce conflict for } resolved using rule 17 (assignment -> VARIABLE = VARIABLE .)
+    VARIABLE        reduce using rule 17 (assignment -> VARIABLE = VARIABLE .)
+    PRINT           reduce using rule 17 (assignment -> VARIABLE = VARIABLE .)
+    DEF             reduce using rule 17 (assignment -> VARIABLE = VARIABLE .)
+    CLASS           reduce using rule 17 (assignment -> VARIABLE = VARIABLE .)
+    SELF            reduce using rule 17 (assignment -> VARIABLE = VARIABLE .)
+    $end            reduce using rule 17 (assignment -> VARIABLE = VARIABLE .)
+    }               reduce using rule 17 (assignment -> VARIABLE = VARIABLE .)
+    [               shift and go to state 52
+    (               shift and go to state 53
+    *               reduce using rule 33 (factor -> VARIABLE .)
+    /               reduce using rule 33 (factor -> VARIABLE .)
+    +               reduce using rule 33 (factor -> VARIABLE .)
+    -               reduce using rule 33 (factor -> VARIABLE .)
+
+  ! VARIABLE        [ reduce using rule 33 (factor -> VARIABLE .) ]
+  ! PRINT           [ reduce using rule 33 (factor -> VARIABLE .) ]
+  ! DEF             [ reduce using rule 33 (factor -> VARIABLE .) ]
+  ! CLASS           [ reduce using rule 33 (factor -> VARIABLE .) ]
+  ! SELF            [ reduce using rule 33 (factor -> VARIABLE .) ]
+  ! $end            [ reduce using rule 33 (factor -> VARIABLE .) ]
+  ! }               [ reduce using rule 33 (factor -> VARIABLE .) ]
+
+
+state 29
+
+    (15) assignment -> VARIABLE = NUMBER .
+    (32) factor -> NUMBER .
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 15 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for PRINT resolved using rule 15 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for DEF resolved using rule 15 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for CLASS resolved using rule 15 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for SELF resolved using rule 15 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for $end resolved using rule 15 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for } resolved using rule 15 (assignment -> VARIABLE = NUMBER .)
+    VARIABLE        reduce using rule 15 (assignment -> VARIABLE = NUMBER .)
+    PRINT           reduce using rule 15 (assignment -> VARIABLE = NUMBER .)
+    DEF             reduce using rule 15 (assignment -> VARIABLE = NUMBER .)
+    CLASS           reduce using rule 15 (assignment -> VARIABLE = NUMBER .)
+    SELF            reduce using rule 15 (assignment -> VARIABLE = NUMBER .)
+    $end            reduce using rule 15 (assignment -> VARIABLE = NUMBER .)
+    }               reduce using rule 15 (assignment -> VARIABLE = NUMBER .)
+    *               reduce using rule 32 (factor -> NUMBER .)
+    /               reduce using rule 32 (factor -> NUMBER .)
+    +               reduce using rule 32 (factor -> NUMBER .)
+    -               reduce using rule 32 (factor -> NUMBER .)
+
+  ! VARIABLE        [ reduce using rule 32 (factor -> NUMBER .) ]
+  ! PRINT           [ reduce using rule 32 (factor -> NUMBER .) ]
+  ! DEF             [ reduce using rule 32 (factor -> NUMBER .) ]
+  ! CLASS           [ reduce using rule 32 (factor -> NUMBER .) ]
+  ! SELF            [ reduce using rule 32 (factor -> NUMBER .) ]
+  ! $end            [ reduce using rule 32 (factor -> NUMBER .) ]
+  ! }               [ reduce using rule 32 (factor -> NUMBER .) ]
+
+
+state 30
+
+    (10) operation -> VARIABLE = expression .
+    (25) expression -> expression . + term
+    (26) expression -> expression . - term
+
+    VARIABLE        reduce using rule 10 (operation -> VARIABLE = expression .)
+    PRINT           reduce using rule 10 (operation -> VARIABLE = expression .)
+    DEF             reduce using rule 10 (operation -> VARIABLE = expression .)
+    CLASS           reduce using rule 10 (operation -> VARIABLE = expression .)
+    SELF            reduce using rule 10 (operation -> VARIABLE = expression .)
+    $end            reduce using rule 10 (operation -> VARIABLE = expression .)
+    }               reduce using rule 10 (operation -> VARIABLE = expression .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 31
+
+    (34) factor -> ( . expression )
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    expression                     shift and go to state 56
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 32
+
+    (24) expression -> term .
+    (28) term -> term . * factor
+    (29) term -> term . / factor
+
+    +               reduce using rule 24 (expression -> term .)
+    -               reduce using rule 24 (expression -> term .)
+    VARIABLE        reduce using rule 24 (expression -> term .)
+    PRINT           reduce using rule 24 (expression -> term .)
+    DEF             reduce using rule 24 (expression -> term .)
+    CLASS           reduce using rule 24 (expression -> term .)
+    SELF            reduce using rule 24 (expression -> term .)
+    $end            reduce using rule 24 (expression -> term .)
+    }               reduce using rule 24 (expression -> term .)
+    ]               reduce using rule 24 (expression -> term .)
+    )               reduce using rule 24 (expression -> term .)
+    ,               reduce using rule 24 (expression -> term .)
+    *               shift and go to state 57
+    /               shift and go to state 58
+
+
+state 33
+
+    (27) term -> factor .
+
+    *               reduce using rule 27 (term -> factor .)
+    /               reduce using rule 27 (term -> factor .)
+    +               reduce using rule 27 (term -> factor .)
+    -               reduce using rule 27 (term -> factor .)
+    VARIABLE        reduce using rule 27 (term -> factor .)
+    PRINT           reduce using rule 27 (term -> factor .)
+    DEF             reduce using rule 27 (term -> factor .)
+    CLASS           reduce using rule 27 (term -> factor .)
+    SELF            reduce using rule 27 (term -> factor .)
+    $end            reduce using rule 27 (term -> factor .)
+    }               reduce using rule 27 (term -> factor .)
+    ]               reduce using rule 27 (term -> factor .)
+    )               reduce using rule 27 (term -> factor .)
+    ,               reduce using rule 27 (term -> factor .)
+
+
+state 34
+
+    (30) factor -> STR .
+
+    *               reduce using rule 30 (factor -> STR .)
+    /               reduce using rule 30 (factor -> STR .)
+    +               reduce using rule 30 (factor -> STR .)
+    -               reduce using rule 30 (factor -> STR .)
+    VARIABLE        reduce using rule 30 (factor -> STR .)
+    PRINT           reduce using rule 30 (factor -> STR .)
+    DEF             reduce using rule 30 (factor -> STR .)
+    CLASS           reduce using rule 30 (factor -> STR .)
+    SELF            reduce using rule 30 (factor -> STR .)
+    $end            reduce using rule 30 (factor -> STR .)
+    }               reduce using rule 30 (factor -> STR .)
+    ]               reduce using rule 30 (factor -> STR .)
+    )               reduce using rule 30 (factor -> STR .)
+    ,               reduce using rule 30 (factor -> STR .)
+
+
+state 35
+
+    (31) factor -> self .
+
+    *               reduce using rule 31 (factor -> self .)
+    /               reduce using rule 31 (factor -> self .)
+    +               reduce using rule 31 (factor -> self .)
+    -               reduce using rule 31 (factor -> self .)
+    VARIABLE        reduce using rule 31 (factor -> self .)
+    PRINT           reduce using rule 31 (factor -> self .)
+    DEF             reduce using rule 31 (factor -> self .)
+    CLASS           reduce using rule 31 (factor -> self .)
+    SELF            reduce using rule 31 (factor -> self .)
+    $end            reduce using rule 31 (factor -> self .)
+    }               reduce using rule 31 (factor -> self .)
+    ]               reduce using rule 31 (factor -> self .)
+    )               reduce using rule 31 (factor -> self .)
+    ,               reduce using rule 31 (factor -> self .)
+
+
+state 36
+
+    (33) factor -> VARIABLE .
+    (35) factor -> VARIABLE . [ expression ]
+
+    *               reduce using rule 33 (factor -> VARIABLE .)
+    /               reduce using rule 33 (factor -> VARIABLE .)
+    ]               reduce using rule 33 (factor -> VARIABLE .)
+    +               reduce using rule 33 (factor -> VARIABLE .)
+    -               reduce using rule 33 (factor -> VARIABLE .)
+    )               reduce using rule 33 (factor -> VARIABLE .)
+    ,               reduce using rule 33 (factor -> VARIABLE .)
+    VARIABLE        reduce using rule 33 (factor -> VARIABLE .)
+    PRINT           reduce using rule 33 (factor -> VARIABLE .)
+    DEF             reduce using rule 33 (factor -> VARIABLE .)
+    CLASS           reduce using rule 33 (factor -> VARIABLE .)
+    SELF            reduce using rule 33 (factor -> VARIABLE .)
+    $end            reduce using rule 33 (factor -> VARIABLE .)
+    }               reduce using rule 33 (factor -> VARIABLE .)
+    [               shift and go to state 59
+
+
+state 37
+
+    (18) assignment -> VARIABLE [ expression . ] = NUMBER
+    (14) operation -> VARIABLE [ expression . ] = expression
+    (25) expression -> expression . + term
+    (26) expression -> expression . - term
+
+    ]               shift and go to state 60
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 38
+
+    (32) factor -> NUMBER .
+
+    *               reduce using rule 32 (factor -> NUMBER .)
+    /               reduce using rule 32 (factor -> NUMBER .)
+    ]               reduce using rule 32 (factor -> NUMBER .)
+    +               reduce using rule 32 (factor -> NUMBER .)
+    -               reduce using rule 32 (factor -> NUMBER .)
+    )               reduce using rule 32 (factor -> NUMBER .)
+    ,               reduce using rule 32 (factor -> NUMBER .)
+    VARIABLE        reduce using rule 32 (factor -> NUMBER .)
+    PRINT           reduce using rule 32 (factor -> NUMBER .)
+    DEF             reduce using rule 32 (factor -> NUMBER .)
+    CLASS           reduce using rule 32 (factor -> NUMBER .)
+    SELF            reduce using rule 32 (factor -> NUMBER .)
+    $end            reduce using rule 32 (factor -> NUMBER .)
+    }               reduce using rule 32 (factor -> NUMBER .)
+
+
+state 39
+
+    (40) run_function -> VARIABLE ( expressions . )
+    (23) expressions -> expressions . , expression
+
+    )               shift and go to state 61
+    ,               shift and go to state 62
+
+
+state 40
+
+    (22) expressions -> expression .
+    (25) expression -> expression . + term
+    (26) expression -> expression . - term
+
+    )               reduce using rule 22 (expressions -> expression .)
+    ,               reduce using rule 22 (expressions -> expression .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 41
+
+    (12) operation -> VARIABLE + = . expression
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    expression                     shift and go to state 63
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 42
+
+    (13) operation -> VARIABLE - = . expression
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    expression                     shift and go to state 64
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 43
+
+    (41) run_function -> VARIABLE . VARIABLE . ( expressions )
+
+    (               shift and go to state 65
+
+
+state 44
+
+    (16) assignment -> self = VARIABLE .
+    (33) factor -> VARIABLE .
+    (35) factor -> VARIABLE . [ expression ]
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 16 (assignment -> self = VARIABLE .)
+  ! reduce/reduce conflict for PRINT resolved using rule 16 (assignment -> self = VARIABLE .)
+  ! reduce/reduce conflict for DEF resolved using rule 16 (assignment -> self = VARIABLE .)
+  ! reduce/reduce conflict for CLASS resolved using rule 16 (assignment -> self = VARIABLE .)
+  ! reduce/reduce conflict for SELF resolved using rule 16 (assignment -> self = VARIABLE .)
+  ! reduce/reduce conflict for $end resolved using rule 16 (assignment -> self = VARIABLE .)
+  ! reduce/reduce conflict for } resolved using rule 16 (assignment -> self = VARIABLE .)
+    VARIABLE        reduce using rule 16 (assignment -> self = VARIABLE .)
+    PRINT           reduce using rule 16 (assignment -> self = VARIABLE .)
+    DEF             reduce using rule 16 (assignment -> self = VARIABLE .)
+    CLASS           reduce using rule 16 (assignment -> self = VARIABLE .)
+    SELF            reduce using rule 16 (assignment -> self = VARIABLE .)
+    $end            reduce using rule 16 (assignment -> self = VARIABLE .)
+    }               reduce using rule 16 (assignment -> self = VARIABLE .)
+    *               reduce using rule 33 (factor -> VARIABLE .)
+    /               reduce using rule 33 (factor -> VARIABLE .)
+    +               reduce using rule 33 (factor -> VARIABLE .)
+    -               reduce using rule 33 (factor -> VARIABLE .)
+    [               shift and go to state 59
+
+  ! VARIABLE        [ reduce using rule 33 (factor -> VARIABLE .) ]
+  ! PRINT           [ reduce using rule 33 (factor -> VARIABLE .) ]
+  ! DEF             [ reduce using rule 33 (factor -> VARIABLE .) ]
+  ! CLASS           [ reduce using rule 33 (factor -> VARIABLE .) ]
+  ! SELF            [ reduce using rule 33 (factor -> VARIABLE .) ]
+  ! $end            [ reduce using rule 33 (factor -> VARIABLE .) ]
+  ! }               [ reduce using rule 33 (factor -> VARIABLE .) ]
+
+
+state 45
+
+    (11) operation -> self = expression .
+    (25) expression -> expression . + term
+    (26) expression -> expression . - term
+
+    VARIABLE        reduce using rule 11 (operation -> self = expression .)
+    PRINT           reduce using rule 11 (operation -> self = expression .)
+    DEF             reduce using rule 11 (operation -> self = expression .)
+    CLASS           reduce using rule 11 (operation -> self = expression .)
+    SELF            reduce using rule 11 (operation -> self = expression .)
+    $end            reduce using rule 11 (operation -> self = expression .)
+    }               reduce using rule 11 (operation -> self = expression .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 46
+
+    (36) print -> PRINT ( variables . )
+    (45) variables -> variables . , VARIABLE
+    (46) variables -> variables . , self
+
+    )               shift and go to state 66
+    ,               shift and go to state 67
+
+
+state 47
+
+    (43) variables -> VARIABLE .
+
+    )               reduce using rule 43 (variables -> VARIABLE .)
+    ,               reduce using rule 43 (variables -> VARIABLE .)
+
+
+state 48
+
+    (44) variables -> self .
+
+    )               reduce using rule 44 (variables -> self .)
+    ,               reduce using rule 44 (variables -> self .)
+
+
+state 49
+
+    (37) function -> DEF VARIABLE ( . variables ) { statements }
+    (38) function -> DEF VARIABLE ( . SELF ) { statements }
+    (39) function -> DEF VARIABLE ( . SELF , variables ) { statements }
+    (42) variables -> .
+    (43) variables -> . VARIABLE
+    (44) variables -> . self
+    (45) variables -> . variables , VARIABLE
+    (46) variables -> . variables , self
+    (48) self -> . SELF . VARIABLE
+
+    SELF            shift and go to state 69
+    )               reduce using rule 42 (variables -> .)
+    ,               reduce using rule 42 (variables -> .)
+    VARIABLE        shift and go to state 47
+
+    variables                      shift and go to state 68
+    self                           shift and go to state 48
+
+state 50
+
+    (48) self -> SELF . VARIABLE .
+
+    =               reduce using rule 48 (self -> SELF . VARIABLE .)
+    *               reduce using rule 48 (self -> SELF . VARIABLE .)
+    /               reduce using rule 48 (self -> SELF . VARIABLE .)
+    +               reduce using rule 48 (self -> SELF . VARIABLE .)
+    -               reduce using rule 48 (self -> SELF . VARIABLE .)
+    VARIABLE        reduce using rule 48 (self -> SELF . VARIABLE .)
+    PRINT           reduce using rule 48 (self -> SELF . VARIABLE .)
+    DEF             reduce using rule 48 (self -> SELF . VARIABLE .)
+    CLASS           reduce using rule 48 (self -> SELF . VARIABLE .)
+    SELF            reduce using rule 48 (self -> SELF . VARIABLE .)
+    $end            reduce using rule 48 (self -> SELF . VARIABLE .)
+    }               reduce using rule 48 (self -> SELF . VARIABLE .)
+    ]               reduce using rule 48 (self -> SELF . VARIABLE .)
+    )               reduce using rule 48 (self -> SELF . VARIABLE .)
+    ,               reduce using rule 48 (self -> SELF . VARIABLE .)
+
+
+state 51
+
+    (47) class -> CLASS VARIABLE { . statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . function
+    (8) statement -> . run_function
+    (9) statement -> . class
+    (15) assignment -> . VARIABLE = NUMBER
+    (16) assignment -> . self = VARIABLE
+    (17) assignment -> . VARIABLE = VARIABLE
+    (18) assignment -> . VARIABLE [ expression ] = NUMBER
+    (19) assignment -> . VARIABLE = VARIABLE [ expression ]
+    (20) assignment -> . VARIABLE = VARIABLE ( expressions )
+    (10) operation -> . VARIABLE = expression
+    (11) operation -> . self = expression
+    (12) operation -> . VARIABLE + = expression
+    (13) operation -> . VARIABLE - = expression
+    (14) operation -> . VARIABLE [ expression ] = expression
+    (36) print -> . PRINT ( variables )
+    (37) function -> . DEF VARIABLE ( variables ) { statements }
+    (38) function -> . DEF VARIABLE ( SELF ) { statements }
+    (39) function -> . DEF VARIABLE ( SELF , variables ) { statements }
+    (40) run_function -> . VARIABLE ( expressions )
+    (41) run_function -> . VARIABLE . VARIABLE ( expressions )
+    (47) class -> . CLASS VARIABLE { statements }
+    (48) self -> . SELF . VARIABLE
+
+    VARIABLE        shift and go to state 10
+    PRINT           shift and go to state 12
+    DEF             shift and go to state 13
+    CLASS           shift and go to state 15
+    SELF            shift and go to state 14
+
+    statements                     shift and go to state 70
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    function                       shift and go to state 7
+    run_function                   shift and go to state 8
+    class                          shift and go to state 9
+    self                           shift and go to state 11
+
+state 52
+
+    (19) assignment -> VARIABLE = VARIABLE [ . expression ]
+    (35) factor -> VARIABLE [ . expression ]
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    expression                     shift and go to state 71
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 53
+
+    (20) assignment -> VARIABLE = VARIABLE ( . expressions )
+    (21) expressions -> .
+    (22) expressions -> . expression
+    (23) expressions -> . expressions , expression
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    )               reduce using rule 21 (expressions -> .)
+    ,               reduce using rule 21 (expressions -> .)
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    expressions                    shift and go to state 72
+    expression                     shift and go to state 40
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 54
+
+    (25) expression -> expression + . term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    term                           shift and go to state 73
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 55
+
+    (26) expression -> expression - . term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    term                           shift and go to state 74
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 56
+
+    (34) factor -> ( expression . )
+    (25) expression -> expression . + term
+    (26) expression -> expression . - term
+
+    )               shift and go to state 75
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 57
+
+    (28) term -> term * . factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    factor                         shift and go to state 76
+    self                           shift and go to state 35
+
+state 58
+
+    (29) term -> term / . factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    factor                         shift and go to state 77
+    self                           shift and go to state 35
+
+state 59
+
+    (35) factor -> VARIABLE [ . expression ]
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    expression                     shift and go to state 78
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 60
+
+    (18) assignment -> VARIABLE [ expression ] . = NUMBER
+    (14) operation -> VARIABLE [ expression ] . = expression
+
+    =               shift and go to state 79
+
+
+state 61
+
+    (40) run_function -> VARIABLE ( expressions ) .
+
+    VARIABLE        reduce using rule 40 (run_function -> VARIABLE ( expressions ) .)
+    PRINT           reduce using rule 40 (run_function -> VARIABLE ( expressions ) .)
+    DEF             reduce using rule 40 (run_function -> VARIABLE ( expressions ) .)
+    CLASS           reduce using rule 40 (run_function -> VARIABLE ( expressions ) .)
+    SELF            reduce using rule 40 (run_function -> VARIABLE ( expressions ) .)
+    $end            reduce using rule 40 (run_function -> VARIABLE ( expressions ) .)
+    }               reduce using rule 40 (run_function -> VARIABLE ( expressions ) .)
+
+
+state 62
+
+    (23) expressions -> expressions , . expression
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    expression                     shift and go to state 80
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 63
+
+    (12) operation -> VARIABLE + = expression .
+    (25) expression -> expression . + term
+    (26) expression -> expression . - term
+
+    VARIABLE        reduce using rule 12 (operation -> VARIABLE + = expression .)
+    PRINT           reduce using rule 12 (operation -> VARIABLE + = expression .)
+    DEF             reduce using rule 12 (operation -> VARIABLE + = expression .)
+    CLASS           reduce using rule 12 (operation -> VARIABLE + = expression .)
+    SELF            reduce using rule 12 (operation -> VARIABLE + = expression .)
+    $end            reduce using rule 12 (operation -> VARIABLE + = expression .)
+    }               reduce using rule 12 (operation -> VARIABLE + = expression .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 64
+
+    (13) operation -> VARIABLE - = expression .
+    (25) expression -> expression . + term
+    (26) expression -> expression . - term
+
+    VARIABLE        reduce using rule 13 (operation -> VARIABLE - = expression .)
+    PRINT           reduce using rule 13 (operation -> VARIABLE - = expression .)
+    DEF             reduce using rule 13 (operation -> VARIABLE - = expression .)
+    CLASS           reduce using rule 13 (operation -> VARIABLE - = expression .)
+    SELF            reduce using rule 13 (operation -> VARIABLE - = expression .)
+    $end            reduce using rule 13 (operation -> VARIABLE - = expression .)
+    }               reduce using rule 13 (operation -> VARIABLE - = expression .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 65
+
+    (41) run_function -> VARIABLE . VARIABLE ( . expressions )
+    (21) expressions -> .
+    (22) expressions -> . expression
+    (23) expressions -> . expressions , expression
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    )               reduce using rule 21 (expressions -> .)
+    ,               reduce using rule 21 (expressions -> .)
+    STR             shift and go to state 34
+    NUMBER          shift and go to state 38
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    expressions                    shift and go to state 81
+    expression                     shift and go to state 40
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 66
+
+    (36) print -> PRINT ( variables ) .
+
+    VARIABLE        reduce using rule 36 (print -> PRINT ( variables ) .)
+    PRINT           reduce using rule 36 (print -> PRINT ( variables ) .)
+    DEF             reduce using rule 36 (print -> PRINT ( variables ) .)
+    CLASS           reduce using rule 36 (print -> PRINT ( variables ) .)
+    SELF            reduce using rule 36 (print -> PRINT ( variables ) .)
+    $end            reduce using rule 36 (print -> PRINT ( variables ) .)
+    }               reduce using rule 36 (print -> PRINT ( variables ) .)
+
+
+state 67
+
+    (45) variables -> variables , . VARIABLE
+    (46) variables -> variables , . self
+    (48) self -> . SELF . VARIABLE
+
+    VARIABLE        shift and go to state 82
+    SELF            shift and go to state 14
+
+    self                           shift and go to state 83
+
+state 68
+
+    (37) function -> DEF VARIABLE ( variables . ) { statements }
+    (45) variables -> variables . , VARIABLE
+    (46) variables -> variables . , self
+
+    )               shift and go to state 84
+    ,               shift and go to state 67
+
+
+state 69
+
+    (38) function -> DEF VARIABLE ( SELF . ) { statements }
+    (39) function -> DEF VARIABLE ( SELF . , variables ) { statements }
+    (48) self -> SELF . . VARIABLE
+
+    )               shift and go to state 85
+    ,               shift and go to state 86
+    .               shift and go to state 26
+
+
+state 70
+
+    (47) class -> CLASS VARIABLE { statements . }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . function
+    (8) statement -> . run_function
+    (9) statement -> . class
+    (15) assignment -> . VARIABLE = NUMBER
+    (16) assignment -> . self = VARIABLE
+    (17) assignment -> . VARIABLE = VARIABLE
+    (18) assignment -> . VARIABLE [ expression ] = NUMBER
+    (19) assignment -> . VARIABLE = VARIABLE [ expression ]
+    (20) assignment -> . VARIABLE = VARIABLE ( expressions )
+    (10) operation -> . VARIABLE = expression
+    (11) operation -> . self = expression
+    (12) operation -> . VARIABLE + = expression
+    (13) operation -> . VARIABLE - = expression
+    (14) operation -> . VARIABLE [ expression ] = expression
+    (36) print -> . PRINT ( variables )
+    (37) function -> . DEF VARIABLE ( variables ) { statements }
+    (38) function -> . DEF VARIABLE ( SELF ) { statements }
+    (39) function -> . DEF VARIABLE ( SELF , variables ) { statements }
+    (40) run_function -> . VARIABLE ( expressions )
+    (41) run_function -> . VARIABLE . VARIABLE ( expressions )
+    (47) class -> . CLASS VARIABLE { statements }
+    (48) self -> . SELF . VARIABLE
+
+    }               shift and go to state 87
+    VARIABLE        shift and go to state 10
+    PRINT           shift and go to state 12
+    DEF             shift and go to state 13
+    CLASS           shift and go to state 15
+    SELF            shift and go to state 14
+
+    statement                      shift and go to state 16
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    function                       shift and go to state 7
+    run_function                   shift and go to state 8
+    class                          shift and go to state 9
+    self                           shift and go to state 11
+
+state 71
+
+    (19) assignment -> VARIABLE = VARIABLE [ expression . ]
+    (35) factor -> VARIABLE [ expression . ]
+    (25) expression -> expression . + term
+    (26) expression -> expression . - term
+
+    ]               shift and go to state 88
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 72
+
+    (20) assignment -> VARIABLE = VARIABLE ( expressions . )
+    (23) expressions -> expressions . , expression
+
+    )               shift and go to state 89
+    ,               shift and go to state 62
+
+
+state 73
+
+    (25) expression -> expression + term .
+    (28) term -> term . * factor
+    (29) term -> term . / factor
+
+    +               reduce using rule 25 (expression -> expression + term .)
+    -               reduce using rule 25 (expression -> expression + term .)
+    VARIABLE        reduce using rule 25 (expression -> expression + term .)
+    PRINT           reduce using rule 25 (expression -> expression + term .)
+    DEF             reduce using rule 25 (expression -> expression + term .)
+    CLASS           reduce using rule 25 (expression -> expression + term .)
+    SELF            reduce using rule 25 (expression -> expression + term .)
+    $end            reduce using rule 25 (expression -> expression + term .)
+    }               reduce using rule 25 (expression -> expression + term .)
+    ]               reduce using rule 25 (expression -> expression + term .)
+    )               reduce using rule 25 (expression -> expression + term .)
+    ,               reduce using rule 25 (expression -> expression + term .)
+    *               shift and go to state 57
+    /               shift and go to state 58
+
+
+state 74
+
+    (26) expression -> expression - term .
+    (28) term -> term . * factor
+    (29) term -> term . / factor
+
+    +               reduce using rule 26 (expression -> expression - term .)
+    -               reduce using rule 26 (expression -> expression - term .)
+    VARIABLE        reduce using rule 26 (expression -> expression - term .)
+    PRINT           reduce using rule 26 (expression -> expression - term .)
+    DEF             reduce using rule 26 (expression -> expression - term .)
+    CLASS           reduce using rule 26 (expression -> expression - term .)
+    SELF            reduce using rule 26 (expression -> expression - term .)
+    $end            reduce using rule 26 (expression -> expression - term .)
+    }               reduce using rule 26 (expression -> expression - term .)
+    ]               reduce using rule 26 (expression -> expression - term .)
+    )               reduce using rule 26 (expression -> expression - term .)
+    ,               reduce using rule 26 (expression -> expression - term .)
+    *               shift and go to state 57
+    /               shift and go to state 58
+
+
+state 75
+
+    (34) factor -> ( expression ) .
+
+    *               reduce using rule 34 (factor -> ( expression ) .)
+    /               reduce using rule 34 (factor -> ( expression ) .)
+    +               reduce using rule 34 (factor -> ( expression ) .)
+    -               reduce using rule 34 (factor -> ( expression ) .)
+    VARIABLE        reduce using rule 34 (factor -> ( expression ) .)
+    PRINT           reduce using rule 34 (factor -> ( expression ) .)
+    DEF             reduce using rule 34 (factor -> ( expression ) .)
+    CLASS           reduce using rule 34 (factor -> ( expression ) .)
+    SELF            reduce using rule 34 (factor -> ( expression ) .)
+    $end            reduce using rule 34 (factor -> ( expression ) .)
+    }               reduce using rule 34 (factor -> ( expression ) .)
+    ]               reduce using rule 34 (factor -> ( expression ) .)
+    )               reduce using rule 34 (factor -> ( expression ) .)
+    ,               reduce using rule 34 (factor -> ( expression ) .)
+
+
+state 76
+
+    (28) term -> term * factor .
+
+    *               reduce using rule 28 (term -> term * factor .)
+    /               reduce using rule 28 (term -> term * factor .)
+    +               reduce using rule 28 (term -> term * factor .)
+    -               reduce using rule 28 (term -> term * factor .)
+    VARIABLE        reduce using rule 28 (term -> term * factor .)
+    PRINT           reduce using rule 28 (term -> term * factor .)
+    DEF             reduce using rule 28 (term -> term * factor .)
+    CLASS           reduce using rule 28 (term -> term * factor .)
+    SELF            reduce using rule 28 (term -> term * factor .)
+    $end            reduce using rule 28 (term -> term * factor .)
+    }               reduce using rule 28 (term -> term * factor .)
+    ]               reduce using rule 28 (term -> term * factor .)
+    )               reduce using rule 28 (term -> term * factor .)
+    ,               reduce using rule 28 (term -> term * factor .)
+
+
+state 77
+
+    (29) term -> term / factor .
+
+    *               reduce using rule 29 (term -> term / factor .)
+    /               reduce using rule 29 (term -> term / factor .)
+    +               reduce using rule 29 (term -> term / factor .)
+    -               reduce using rule 29 (term -> term / factor .)
+    VARIABLE        reduce using rule 29 (term -> term / factor .)
+    PRINT           reduce using rule 29 (term -> term / factor .)
+    DEF             reduce using rule 29 (term -> term / factor .)
+    CLASS           reduce using rule 29 (term -> term / factor .)
+    SELF            reduce using rule 29 (term -> term / factor .)
+    $end            reduce using rule 29 (term -> term / factor .)
+    }               reduce using rule 29 (term -> term / factor .)
+    ]               reduce using rule 29 (term -> term / factor .)
+    )               reduce using rule 29 (term -> term / factor .)
+    ,               reduce using rule 29 (term -> term / factor .)
+
+
+state 78
+
+    (35) factor -> VARIABLE [ expression . ]
+    (25) expression -> expression . + term
+    (26) expression -> expression . - term
+
+    ]               shift and go to state 90
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 79
+
+    (18) assignment -> VARIABLE [ expression ] = . NUMBER
+    (14) operation -> VARIABLE [ expression ] = . expression
+    (24) expression -> . term
+    (25) expression -> . expression + term
+    (26) expression -> . expression - term
+    (27) term -> . factor
+    (28) term -> . term * factor
+    (29) term -> . term / factor
+    (30) factor -> . STR
+    (31) factor -> . self
+    (32) factor -> . NUMBER
+    (33) factor -> . VARIABLE
+    (34) factor -> . ( expression )
+    (35) factor -> . VARIABLE [ expression ]
+    (48) self -> . SELF . VARIABLE
+
+    NUMBER          shift and go to state 92
+    STR             shift and go to state 34
+    VARIABLE        shift and go to state 36
+    (               shift and go to state 31
+    SELF            shift and go to state 14
+
+    expression                     shift and go to state 91
+    term                           shift and go to state 32
+    factor                         shift and go to state 33
+    self                           shift and go to state 35
+
+state 80
+
+    (23) expressions -> expressions , expression .
+    (25) expression -> expression . + term
+    (26) expression -> expression . - term
+
+    )               reduce using rule 23 (expressions -> expressions , expression .)
+    ,               reduce using rule 23 (expressions -> expressions , expression .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 81
+
+    (41) run_function -> VARIABLE . VARIABLE ( expressions . )
+    (23) expressions -> expressions . , expression
+
+    )               shift and go to state 93
+    ,               shift and go to state 62
+
+
+state 82
+
+    (45) variables -> variables , VARIABLE .
+
+    )               reduce using rule 45 (variables -> variables , VARIABLE .)
+    ,               reduce using rule 45 (variables -> variables , VARIABLE .)
+
+
+state 83
+
+    (46) variables -> variables , self .
+
+    )               reduce using rule 46 (variables -> variables , self .)
+    ,               reduce using rule 46 (variables -> variables , self .)
+
+
+state 84
+
+    (37) function -> DEF VARIABLE ( variables ) . { statements }
+
+    {               shift and go to state 94
+
+
+state 85
+
+    (38) function -> DEF VARIABLE ( SELF ) . { statements }
+
+    {               shift and go to state 95
+
+
+state 86
+
+    (39) function -> DEF VARIABLE ( SELF , . variables ) { statements }
+    (42) variables -> .
+    (43) variables -> . VARIABLE
+    (44) variables -> . self
+    (45) variables -> . variables , VARIABLE
+    (46) variables -> . variables , self
+    (48) self -> . SELF . VARIABLE
+
+    )               reduce using rule 42 (variables -> .)
+    ,               reduce using rule 42 (variables -> .)
+    VARIABLE        shift and go to state 47
+    SELF            shift and go to state 14
+
+    variables                      shift and go to state 96
+    self                           shift and go to state 48
+
+state 87
+
+    (47) class -> CLASS VARIABLE { statements } .
+
+    VARIABLE        reduce using rule 47 (class -> CLASS VARIABLE { statements } .)
+    PRINT           reduce using rule 47 (class -> CLASS VARIABLE { statements } .)
+    DEF             reduce using rule 47 (class -> CLASS VARIABLE { statements } .)
+    CLASS           reduce using rule 47 (class -> CLASS VARIABLE { statements } .)
+    SELF            reduce using rule 47 (class -> CLASS VARIABLE { statements } .)
+    $end            reduce using rule 47 (class -> CLASS VARIABLE { statements } .)
+    }               reduce using rule 47 (class -> CLASS VARIABLE { statements } .)
+
+
+state 88
+
+    (19) assignment -> VARIABLE = VARIABLE [ expression ] .
+    (35) factor -> VARIABLE [ expression ] .
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+  ! reduce/reduce conflict for PRINT resolved using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+  ! reduce/reduce conflict for DEF resolved using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+  ! reduce/reduce conflict for CLASS resolved using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+  ! reduce/reduce conflict for SELF resolved using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+  ! reduce/reduce conflict for $end resolved using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+  ! reduce/reduce conflict for } resolved using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+    VARIABLE        reduce using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+    PRINT           reduce using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+    DEF             reduce using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+    CLASS           reduce using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+    SELF            reduce using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+    $end            reduce using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+    }               reduce using rule 19 (assignment -> VARIABLE = VARIABLE [ expression ] .)
+    *               reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    /               reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    +               reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    -               reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+
+  ! VARIABLE        [ reduce using rule 35 (factor -> VARIABLE [ expression ] .) ]
+  ! PRINT           [ reduce using rule 35 (factor -> VARIABLE [ expression ] .) ]
+  ! DEF             [ reduce using rule 35 (factor -> VARIABLE [ expression ] .) ]
+  ! CLASS           [ reduce using rule 35 (factor -> VARIABLE [ expression ] .) ]
+  ! SELF            [ reduce using rule 35 (factor -> VARIABLE [ expression ] .) ]
+  ! $end            [ reduce using rule 35 (factor -> VARIABLE [ expression ] .) ]
+  ! }               [ reduce using rule 35 (factor -> VARIABLE [ expression ] .) ]
+
+
+state 89
+
+    (20) assignment -> VARIABLE = VARIABLE ( expressions ) .
+
+    VARIABLE        reduce using rule 20 (assignment -> VARIABLE = VARIABLE ( expressions ) .)
+    PRINT           reduce using rule 20 (assignment -> VARIABLE = VARIABLE ( expressions ) .)
+    DEF             reduce using rule 20 (assignment -> VARIABLE = VARIABLE ( expressions ) .)
+    CLASS           reduce using rule 20 (assignment -> VARIABLE = VARIABLE ( expressions ) .)
+    SELF            reduce using rule 20 (assignment -> VARIABLE = VARIABLE ( expressions ) .)
+    $end            reduce using rule 20 (assignment -> VARIABLE = VARIABLE ( expressions ) .)
+    }               reduce using rule 20 (assignment -> VARIABLE = VARIABLE ( expressions ) .)
+
+
+state 90
+
+    (35) factor -> VARIABLE [ expression ] .
+
+    *               reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    /               reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    ]               reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    +               reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    -               reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    )               reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    ,               reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    VARIABLE        reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    PRINT           reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    DEF             reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    CLASS           reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    SELF            reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    $end            reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+    }               reduce using rule 35 (factor -> VARIABLE [ expression ] .)
+
+
+state 91
+
+    (14) operation -> VARIABLE [ expression ] = expression .
+    (25) expression -> expression . + term
+    (26) expression -> expression . - term
+
+    VARIABLE        reduce using rule 14 (operation -> VARIABLE [ expression ] = expression .)
+    PRINT           reduce using rule 14 (operation -> VARIABLE [ expression ] = expression .)
+    DEF             reduce using rule 14 (operation -> VARIABLE [ expression ] = expression .)
+    CLASS           reduce using rule 14 (operation -> VARIABLE [ expression ] = expression .)
+    SELF            reduce using rule 14 (operation -> VARIABLE [ expression ] = expression .)
+    $end            reduce using rule 14 (operation -> VARIABLE [ expression ] = expression .)
+    }               reduce using rule 14 (operation -> VARIABLE [ expression ] = expression .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 92
+
+    (18) assignment -> VARIABLE [ expression ] = NUMBER .
+    (32) factor -> NUMBER .
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+  ! reduce/reduce conflict for PRINT resolved using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+  ! reduce/reduce conflict for DEF resolved using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+  ! reduce/reduce conflict for CLASS resolved using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+  ! reduce/reduce conflict for SELF resolved using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+  ! reduce/reduce conflict for $end resolved using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+  ! reduce/reduce conflict for } resolved using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+    VARIABLE        reduce using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+    PRINT           reduce using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+    DEF             reduce using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+    CLASS           reduce using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+    SELF            reduce using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+    $end            reduce using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+    }               reduce using rule 18 (assignment -> VARIABLE [ expression ] = NUMBER .)
+    *               reduce using rule 32 (factor -> NUMBER .)
+    /               reduce using rule 32 (factor -> NUMBER .)
+    +               reduce using rule 32 (factor -> NUMBER .)
+    -               reduce using rule 32 (factor -> NUMBER .)
+
+  ! VARIABLE        [ reduce using rule 32 (factor -> NUMBER .) ]
+  ! PRINT           [ reduce using rule 32 (factor -> NUMBER .) ]
+  ! DEF             [ reduce using rule 32 (factor -> NUMBER .) ]
+  ! CLASS           [ reduce using rule 32 (factor -> NUMBER .) ]
+  ! SELF            [ reduce using rule 32 (factor -> NUMBER .) ]
+  ! $end            [ reduce using rule 32 (factor -> NUMBER .) ]
+  ! }               [ reduce using rule 32 (factor -> NUMBER .) ]
+
+
+state 93
+
+    (41) run_function -> VARIABLE . VARIABLE ( expressions ) .
+
+    VARIABLE        reduce using rule 41 (run_function -> VARIABLE . VARIABLE ( expressions ) .)
+    PRINT           reduce using rule 41 (run_function -> VARIABLE . VARIABLE ( expressions ) .)
+    DEF             reduce using rule 41 (run_function -> VARIABLE . VARIABLE ( expressions ) .)
+    CLASS           reduce using rule 41 (run_function -> VARIABLE . VARIABLE ( expressions ) .)
+    SELF            reduce using rule 41 (run_function -> VARIABLE . VARIABLE ( expressions ) .)
+    $end            reduce using rule 41 (run_function -> VARIABLE . VARIABLE ( expressions ) .)
+    }               reduce using rule 41 (run_function -> VARIABLE . VARIABLE ( expressions ) .)
+
+
+state 94
+
+    (37) function -> DEF VARIABLE ( variables ) { . statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . function
+    (8) statement -> . run_function
+    (9) statement -> . class
+    (15) assignment -> . VARIABLE = NUMBER
+    (16) assignment -> . self = VARIABLE
+    (17) assignment -> . VARIABLE = VARIABLE
+    (18) assignment -> . VARIABLE [ expression ] = NUMBER
+    (19) assignment -> . VARIABLE = VARIABLE [ expression ]
+    (20) assignment -> . VARIABLE = VARIABLE ( expressions )
+    (10) operation -> . VARIABLE = expression
+    (11) operation -> . self = expression
+    (12) operation -> . VARIABLE + = expression
+    (13) operation -> . VARIABLE - = expression
+    (14) operation -> . VARIABLE [ expression ] = expression
+    (36) print -> . PRINT ( variables )
+    (37) function -> . DEF VARIABLE ( variables ) { statements }
+    (38) function -> . DEF VARIABLE ( SELF ) { statements }
+    (39) function -> . DEF VARIABLE ( SELF , variables ) { statements }
+    (40) run_function -> . VARIABLE ( expressions )
+    (41) run_function -> . VARIABLE . VARIABLE ( expressions )
+    (47) class -> . CLASS VARIABLE { statements }
+    (48) self -> . SELF . VARIABLE
+
+    VARIABLE        shift and go to state 10
+    PRINT           shift and go to state 12
+    DEF             shift and go to state 13
+    CLASS           shift and go to state 15
+    SELF            shift and go to state 14
+
+    statements                     shift and go to state 97
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    function                       shift and go to state 7
+    run_function                   shift and go to state 8
+    class                          shift and go to state 9
+    self                           shift and go to state 11
+
+state 95
+
+    (38) function -> DEF VARIABLE ( SELF ) { . statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . function
+    (8) statement -> . run_function
+    (9) statement -> . class
+    (15) assignment -> . VARIABLE = NUMBER
+    (16) assignment -> . self = VARIABLE
+    (17) assignment -> . VARIABLE = VARIABLE
+    (18) assignment -> . VARIABLE [ expression ] = NUMBER
+    (19) assignment -> . VARIABLE = VARIABLE [ expression ]
+    (20) assignment -> . VARIABLE = VARIABLE ( expressions )
+    (10) operation -> . VARIABLE = expression
+    (11) operation -> . self = expression
+    (12) operation -> . VARIABLE + = expression
+    (13) operation -> . VARIABLE - = expression
+    (14) operation -> . VARIABLE [ expression ] = expression
+    (36) print -> . PRINT ( variables )
+    (37) function -> . DEF VARIABLE ( variables ) { statements }
+    (38) function -> . DEF VARIABLE ( SELF ) { statements }
+    (39) function -> . DEF VARIABLE ( SELF , variables ) { statements }
+    (40) run_function -> . VARIABLE ( expressions )
+    (41) run_function -> . VARIABLE . VARIABLE ( expressions )
+    (47) class -> . CLASS VARIABLE { statements }
+    (48) self -> . SELF . VARIABLE
+
+    VARIABLE        shift and go to state 10
+    PRINT           shift and go to state 12
+    DEF             shift and go to state 13
+    CLASS           shift and go to state 15
+    SELF            shift and go to state 14
+
+    statements                     shift and go to state 98
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    function                       shift and go to state 7
+    run_function                   shift and go to state 8
+    class                          shift and go to state 9
+    self                           shift and go to state 11
+
+state 96
+
+    (39) function -> DEF VARIABLE ( SELF , variables . ) { statements }
+    (45) variables -> variables . , VARIABLE
+    (46) variables -> variables . , self
+
+    )               shift and go to state 99
+    ,               shift and go to state 67
+
+
+state 97
+
+    (37) function -> DEF VARIABLE ( variables ) { statements . }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . function
+    (8) statement -> . run_function
+    (9) statement -> . class
+    (15) assignment -> . VARIABLE = NUMBER
+    (16) assignment -> . self = VARIABLE
+    (17) assignment -> . VARIABLE = VARIABLE
+    (18) assignment -> . VARIABLE [ expression ] = NUMBER
+    (19) assignment -> . VARIABLE = VARIABLE [ expression ]
+    (20) assignment -> . VARIABLE = VARIABLE ( expressions )
+    (10) operation -> . VARIABLE = expression
+    (11) operation -> . self = expression
+    (12) operation -> . VARIABLE + = expression
+    (13) operation -> . VARIABLE - = expression
+    (14) operation -> . VARIABLE [ expression ] = expression
+    (36) print -> . PRINT ( variables )
+    (37) function -> . DEF VARIABLE ( variables ) { statements }
+    (38) function -> . DEF VARIABLE ( SELF ) { statements }
+    (39) function -> . DEF VARIABLE ( SELF , variables ) { statements }
+    (40) run_function -> . VARIABLE ( expressions )
+    (41) run_function -> . VARIABLE . VARIABLE ( expressions )
+    (47) class -> . CLASS VARIABLE { statements }
+    (48) self -> . SELF . VARIABLE
+
+    }               shift and go to state 100
+    VARIABLE        shift and go to state 10
+    PRINT           shift and go to state 12
+    DEF             shift and go to state 13
+    CLASS           shift and go to state 15
+    SELF            shift and go to state 14
+
+    statement                      shift and go to state 16
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    function                       shift and go to state 7
+    run_function                   shift and go to state 8
+    class                          shift and go to state 9
+    self                           shift and go to state 11
+
+state 98
+
+    (38) function -> DEF VARIABLE ( SELF ) { statements . }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . function
+    (8) statement -> . run_function
+    (9) statement -> . class
+    (15) assignment -> . VARIABLE = NUMBER
+    (16) assignment -> . self = VARIABLE
+    (17) assignment -> . VARIABLE = VARIABLE
+    (18) assignment -> . VARIABLE [ expression ] = NUMBER
+    (19) assignment -> . VARIABLE = VARIABLE [ expression ]
+    (20) assignment -> . VARIABLE = VARIABLE ( expressions )
+    (10) operation -> . VARIABLE = expression
+    (11) operation -> . self = expression
+    (12) operation -> . VARIABLE + = expression
+    (13) operation -> . VARIABLE - = expression
+    (14) operation -> . VARIABLE [ expression ] = expression
+    (36) print -> . PRINT ( variables )
+    (37) function -> . DEF VARIABLE ( variables ) { statements }
+    (38) function -> . DEF VARIABLE ( SELF ) { statements }
+    (39) function -> . DEF VARIABLE ( SELF , variables ) { statements }
+    (40) run_function -> . VARIABLE ( expressions )
+    (41) run_function -> . VARIABLE . VARIABLE ( expressions )
+    (47) class -> . CLASS VARIABLE { statements }
+    (48) self -> . SELF . VARIABLE
+
+    }               shift and go to state 101
+    VARIABLE        shift and go to state 10
+    PRINT           shift and go to state 12
+    DEF             shift and go to state 13
+    CLASS           shift and go to state 15
+    SELF            shift and go to state 14
+
+    statement                      shift and go to state 16
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    function                       shift and go to state 7
+    run_function                   shift and go to state 8
+    class                          shift and go to state 9
+    self                           shift and go to state 11
+
+state 99
+
+    (39) function -> DEF VARIABLE ( SELF , variables ) . { statements }
+
+    {               shift and go to state 102
+
+
+state 100
+
+    (37) function -> DEF VARIABLE ( variables ) { statements } .
+
+    VARIABLE        reduce using rule 37 (function -> DEF VARIABLE ( variables ) { statements } .)
+    PRINT           reduce using rule 37 (function -> DEF VARIABLE ( variables ) { statements } .)
+    DEF             reduce using rule 37 (function -> DEF VARIABLE ( variables ) { statements } .)
+    CLASS           reduce using rule 37 (function -> DEF VARIABLE ( variables ) { statements } .)
+    SELF            reduce using rule 37 (function -> DEF VARIABLE ( variables ) { statements } .)
+    $end            reduce using rule 37 (function -> DEF VARIABLE ( variables ) { statements } .)
+    }               reduce using rule 37 (function -> DEF VARIABLE ( variables ) { statements } .)
+
+
+state 101
+
+    (38) function -> DEF VARIABLE ( SELF ) { statements } .
+
+    VARIABLE        reduce using rule 38 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    PRINT           reduce using rule 38 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    DEF             reduce using rule 38 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    CLASS           reduce using rule 38 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    SELF            reduce using rule 38 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    $end            reduce using rule 38 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    }               reduce using rule 38 (function -> DEF VARIABLE ( SELF ) { statements } .)
+
+
+state 102
+
+    (39) function -> DEF VARIABLE ( SELF , variables ) { . statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . function
+    (8) statement -> . run_function
+    (9) statement -> . class
+    (15) assignment -> . VARIABLE = NUMBER
+    (16) assignment -> . self = VARIABLE
+    (17) assignment -> . VARIABLE = VARIABLE
+    (18) assignment -> . VARIABLE [ expression ] = NUMBER
+    (19) assignment -> . VARIABLE = VARIABLE [ expression ]
+    (20) assignment -> . VARIABLE = VARIABLE ( expressions )
+    (10) operation -> . VARIABLE = expression
+    (11) operation -> . self = expression
+    (12) operation -> . VARIABLE + = expression
+    (13) operation -> . VARIABLE - = expression
+    (14) operation -> . VARIABLE [ expression ] = expression
+    (36) print -> . PRINT ( variables )
+    (37) function -> . DEF VARIABLE ( variables ) { statements }
+    (38) function -> . DEF VARIABLE ( SELF ) { statements }
+    (39) function -> . DEF VARIABLE ( SELF , variables ) { statements }
+    (40) run_function -> . VARIABLE ( expressions )
+    (41) run_function -> . VARIABLE . VARIABLE ( expressions )
+    (47) class -> . CLASS VARIABLE { statements }
+    (48) self -> . SELF . VARIABLE
+
+    VARIABLE        shift and go to state 10
+    PRINT           shift and go to state 12
+    DEF             shift and go to state 13
+    CLASS           shift and go to state 15
+    SELF            shift and go to state 14
+
+    statements                     shift and go to state 103
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    function                       shift and go to state 7
+    run_function                   shift and go to state 8
+    class                          shift and go to state 9
+    self                           shift and go to state 11
+
+state 103
+
+    (39) function -> DEF VARIABLE ( SELF , variables ) { statements . }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . function
+    (8) statement -> . run_function
+    (9) statement -> . class
+    (15) assignment -> . VARIABLE = NUMBER
+    (16) assignment -> . self = VARIABLE
+    (17) assignment -> . VARIABLE = VARIABLE
+    (18) assignment -> . VARIABLE [ expression ] = NUMBER
+    (19) assignment -> . VARIABLE = VARIABLE [ expression ]
+    (20) assignment -> . VARIABLE = VARIABLE ( expressions )
+    (10) operation -> . VARIABLE = expression
+    (11) operation -> . self = expression
+    (12) operation -> . VARIABLE + = expression
+    (13) operation -> . VARIABLE - = expression
+    (14) operation -> . VARIABLE [ expression ] = expression
+    (36) print -> . PRINT ( variables )
+    (37) function -> . DEF VARIABLE ( variables ) { statements }
+    (38) function -> . DEF VARIABLE ( SELF ) { statements }
+    (39) function -> . DEF VARIABLE ( SELF , variables ) { statements }
+    (40) run_function -> . VARIABLE ( expressions )
+    (41) run_function -> . VARIABLE . VARIABLE ( expressions )
+    (47) class -> . CLASS VARIABLE { statements }
+    (48) self -> . SELF . VARIABLE
+
+    }               shift and go to state 104
+    VARIABLE        shift and go to state 10
+    PRINT           shift and go to state 12
+    DEF             shift and go to state 13
+    CLASS           shift and go to state 15
+    SELF            shift and go to state 14
+
+    statement                      shift and go to state 16
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    function                       shift and go to state 7
+    run_function                   shift and go to state 8
+    class                          shift and go to state 9
+    self                           shift and go to state 11
+
+state 104
+
+    (39) function -> DEF VARIABLE ( SELF , variables ) { statements } .
+
+    VARIABLE        reduce using rule 39 (function -> DEF VARIABLE ( SELF , variables ) { statements } .)
+    PRINT           reduce using rule 39 (function -> DEF VARIABLE ( SELF , variables ) { statements } .)
+    DEF             reduce using rule 39 (function -> DEF VARIABLE ( SELF , variables ) { statements } .)
+    CLASS           reduce using rule 39 (function -> DEF VARIABLE ( SELF , variables ) { statements } .)
+    SELF            reduce using rule 39 (function -> DEF VARIABLE ( SELF , variables ) { statements } .)
+    $end            reduce using rule 39 (function -> DEF VARIABLE ( SELF , variables ) { statements } .)
+    }               reduce using rule 39 (function -> DEF VARIABLE ( SELF , variables ) { statements } .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: reduce/reduce conflict in state 28 resolved using rule (assignment -> VARIABLE = VARIABLE)
+WARNING: rejected rule (factor -> VARIABLE) in state 28
+WARNING: reduce/reduce conflict in state 29 resolved using rule (assignment -> VARIABLE = NUMBER)
+WARNING: rejected rule (factor -> NUMBER) in state 29
+WARNING: reduce/reduce conflict in state 44 resolved using rule (assignment -> self = VARIABLE)
+WARNING: rejected rule (factor -> VARIABLE) in state 44
+WARNING: reduce/reduce conflict in state 88 resolved using rule (assignment -> VARIABLE = VARIABLE [ expression ])
+WARNING: rejected rule (factor -> VARIABLE [ expression ]) in state 88
+WARNING: reduce/reduce conflict in state 92 resolved using rule (assignment -> VARIABLE [ expression ] = NUMBER)
+WARNING: rejected rule (factor -> NUMBER) in state 92
